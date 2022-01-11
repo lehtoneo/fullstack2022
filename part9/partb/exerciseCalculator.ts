@@ -65,7 +65,7 @@ const getRatingDescription = (rating: Rating ) : string => {
 
 type InputArray = number[];
 
-const calculateExercises = (hours: InputArray, target: number) : ExerciseResult | string => {
+const calculateExercises = (hours: InputArray, target: number) : ExerciseResult => {
   const periodLength = hours.length;
   let trainingDays = 0;
   let sumOfHours = 0;
@@ -106,3 +106,5 @@ try {
   }
   console.log(errorMessage);
 }
+
+export default calculateExercises;
