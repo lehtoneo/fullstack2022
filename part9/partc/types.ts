@@ -15,7 +15,7 @@ export interface PatientEntry {
   name: string,
   dateOfBirth: string,
   ssn: string,
-  gender: string,
+  gender: Gender,
   occupation: string
 }
 

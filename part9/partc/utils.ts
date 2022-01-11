@@ -1,4 +1,4 @@
-import { NewPatientEntry } from './types';
+import { NewPatientEntry, Gender } from './types';
 
 const isString = (text: unknown): text is string => {
   return typeof text === 'string' || text instanceof String;
@@ -6,6 +6,18 @@ const isString = (text: unknown): text is string => {
 
 const isDate = (date: string): boolean => {
   return Boolean(Date.parse(date));
+};
+
+const isGender = (param: any): param is Gender => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  return Object.values(Gender).includes(param);
+};
+
+const parseGender = (gender: unknown): Gender => {
+  if (!gender || !isGender(gender)) {
+      throw new Error('Incorrect or missing visibility: ' + gender);
+  }
+  return gender;
 };
 
 const parseString = (text: unknown): string => {
@@ -30,7 +42,7 @@ const toNewPatientEntry = ({ name, dateOfBirth, gender, occupation, ssn }: Patie
   const newEntry: NewPatientEntry = {
     name: parseString(name),
     dateOfBirth: parseDate(dateOfBirth),
-    gender: parseString(gender),
+    gender: parseGender(gender),
     occupation: parseString(occupation),
     ssn: parseString(ssn)
 
