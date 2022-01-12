@@ -5,9 +5,12 @@ import { useParams } from "react-router-dom";
 import { Patient } from "../types";
 import { apiBaseUrl } from "../constants";
 import { addPatient, useStateValue } from "../state";
+import EntryDetails from "./EntryDetails";
+
+
 
 const PatientPage = () => {
-  const [{ patients, diagnosis }, dispatch] = useStateValue();
+  const [{ patients }, dispatch] = useStateValue();
   const { id: patientId } = useParams<{ id: string }>();
   const patient = patients[patientId];
   const getIconName = () => {
@@ -56,19 +59,7 @@ const PatientPage = () => {
       
       patient.entries?.map((entry, index) => {
         return (
-          <div key={index}>
-            {entry.date} <i>{entry.description}</i>
-
-            {
-              entry.diagnosisCodes?.map((code, index) => {
-                return (
-                  <ul key={index}>
-                    <li>{code} {diagnosis[code] && diagnosis[code].name}</li>
-                  </ul>
-                );
-              })
-            }
-          </div>
+          <EntryDetails key={index} entry={entry}/>
         );
       })
       }
