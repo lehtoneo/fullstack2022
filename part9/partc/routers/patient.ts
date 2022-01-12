@@ -9,6 +9,16 @@ router.get('/', (_req, res) => {
   res.send(patients);
 });
 
+router.get('/:id', (req, res) => {
+  const id = req.params.id;
+  const patient = patientService.findById(id);
+  if (patient) {
+    res.send(patient);
+  } else {
+    res.status(404);
+  }
+});
+
 router.post('/', (req, res) => {
 
   try {
