@@ -7,7 +7,7 @@ import { apiBaseUrl } from "../constants";
 import { addPatient, useStateValue } from "../state";
 
 const PatientPage = () => {
-  const [{ patients }, dispatch] = useStateValue();
+  const [{ patients, diagnosis }, dispatch] = useStateValue();
   const { id: patientId } = useParams<{ id: string }>();
   const patient = patients[patientId];
   const getIconName = () => {
@@ -54,21 +54,21 @@ const PatientPage = () => {
       { 
       
       
-      patient.entries?.map((entry) => {
+      patient.entries?.map((entry, index) => {
         return (
-          <>
+          <div key={index}>
             {entry.date} <i>{entry.description}</i>
 
             {
               entry.diagnosisCodes?.map((code, index) => {
                 return (
                   <ul key={index}>
-                    <li>{code}</li>
+                    <li>{code} {diagnosis[code] && diagnosis[code].name}</li>
                   </ul>
                 );
               })
             }
-          </>
+          </div>
         );
       })
       }
