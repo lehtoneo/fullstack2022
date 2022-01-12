@@ -32,11 +32,15 @@ const PatientPage = () => {
         console.error(e);
       }
     };
-    if (!patient.ssn) {
+    if (!patient?.ssn) {
       void fetchPatient();
     }
     
   }, [dispatch]);
+
+  if (!patient) {
+    return <div className="App"></div>;
+  }
 
   return (
     <div className="App">
@@ -46,6 +50,28 @@ const PatientPage = () => {
         <br/>
         occupation: {patient.occupation}
       </p>
+      <h2>entries</h2>
+      { 
+      
+      
+      patient.entries?.map((entry) => {
+        return (
+          <>
+            {entry.date} <i>{entry.description}</i>
+
+            {
+              entry.diagnosisCodes?.map((code, index) => {
+                return (
+                  <ul key={index}>
+                    <li>{code}</li>
+                  </ul>
+                );
+              })
+            }
+          </>
+        );
+      })
+      }
     </div>
   );
 };
