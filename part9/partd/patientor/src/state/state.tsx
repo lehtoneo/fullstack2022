@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useReducer } from "react";
 import { Patient } from "../types";
 
-import { Action } from "./reducer";
+import { Action, setPatients, addPatientToState } from "./reducer";
 
 export type State = {
   patients: { [id: string]: Patient };
@@ -33,3 +33,7 @@ export const StateProvider: React.FC<StateProviderProps> = ({
   );
 };
 export const useStateValue = () => useContext(StateContext);
+
+export const addPatient = addPatientToState;
+
+export const setPatientList = setPatients;

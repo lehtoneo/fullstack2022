@@ -4,7 +4,7 @@ import { Icon } from "semantic-ui-react";
 import { useParams } from "react-router-dom";
 import { Patient } from "../types";
 import { apiBaseUrl } from "../constants";
-import { useStateValue } from "../state";
+import { addPatient, useStateValue } from "../state";
 
 const PatientPage = () => {
   const [{ patients }, dispatch] = useStateValue();
@@ -27,7 +27,7 @@ const PatientPage = () => {
           `${apiBaseUrl}/patients/${patientId}`
         );
 
-        dispatch({ type: "ADD_PATIENT", payload: patientFromApi });
+        dispatch(addPatient(patientFromApi));
       } catch (e) {
         console.error(e);
       }
