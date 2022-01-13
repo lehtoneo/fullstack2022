@@ -42,6 +42,7 @@ router.post('/:id/entries', (req, res) => {
     const addedEntry = patientService.addPatientEntry(id, newEntry);
     res.send(addedEntry);
   } catch (e: unknown) {
+    console.log(e);
     res.send({
       error: 'Error creating new entry'
     });

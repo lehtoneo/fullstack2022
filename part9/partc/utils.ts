@@ -45,16 +45,17 @@ const isStringArray = (param: any): param is string[] => {
   if (!Array.isArray(param)) {
     return false;
   }
-  let bool = false;
+  let bool = true;
   param.forEach((el) => {
     if (!isString(el)) {
-      bool = true;
+      bool = false;
     }
   });
   return bool;
 };
 
 const parseStringArray = (array: unknown): string[] => {
+  console.log({ array });
   if (!array || !isStringArray(array)) {
     throw new Error('Array is not a string array');
   }
