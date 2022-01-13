@@ -46,13 +46,7 @@ export const reducer = (state: State, action: Action): State => {
     case "SET_DIAGNOSIS_LIST":
       return {
         ...state,
-        diagnosis: {
-          ...action.payload.reduce(
-            (memo, diagnosis) => ({ ...memo, [diagnosis.code]: diagnosis }),
-            {}
-          ),
-          ...state.diagnosis
-        }
+        diagnosis: [...action.payload]
       };
     default:
       return state;

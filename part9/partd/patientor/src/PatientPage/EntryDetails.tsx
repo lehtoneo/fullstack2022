@@ -42,9 +42,10 @@ const HospitalEntryComponent: React.FC<{ entry: HospitalEntry }> = ( { entry }) 
 
       {
         entry.diagnosisCodes?.map((code, index) => {
+          const diagnose = diagnosis.find(diag => diag.code === code)?.name;
           return (
             <ul key={index}>
-              <li>{code} {diagnosis[code] && diagnosis[code].name}</li>
+              <li>{code} {diagnose}</li>
             </ul>
           );
         })
@@ -61,9 +62,10 @@ const OccupationalHealthcareComponent: React.FC<{ entry: OccupationalHealthcareE
 
       {
         entry.diagnosisCodes?.map((code, index) => {
+          const diagnose = diagnosis.find(diag => diag.code === code)?.name;
           return (
             <ul key={index}>
-              <li>{code} {diagnosis[code] && diagnosis[code].name}</li>
+              <li>{code} {diagnose}</li>
             </ul>
           );
         })
@@ -80,9 +82,10 @@ const HealthCheckComponent: React.FC<{ entry: HealthCheckEntry }> = ( { entry })
 
       {
         entry.diagnosisCodes?.map((code, index) => {
+          const diagnose = diagnosis.find(diag => diag.code === code)?.name;
           return (
             <ul key={index}>
-              <li>{code} {diagnosis[code] && diagnosis[code].name}</li>
+              <li>{code} {diagnose}</li>
             </ul>
           );
         })
